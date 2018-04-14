@@ -4,19 +4,24 @@
 
 import React from 'react';
 import importedComponent from 'react-imported-component';
-import { Helmet } from 'react-helmet';
+import Helmet from 'react-helmet-async';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import Header from './components/Header';
 
-import HelloWorld from './HelloWorld';
+import './styles';
 
-const HelloWorld2 = importedComponent(() => import('./HelloWorld2'));
+import HelloWorld from './pages/HelloWorld';
+
+const HelloWorld2 = importedComponent(() => import('./pages/HelloWorld2'));
 
 export default function App() {
   return (
     <div>
-      <Helmet defaultTitle="Hello World!">
+      <Helmet>
+        <title>Hello World</title>
         <meta charSet="utf-8" />
       </Helmet>
+      <Header />
       <Switch>
         <Route exact path="/" component={HelloWorld} />
         <Route exact path="/codeSplit" component={HelloWorld2} />

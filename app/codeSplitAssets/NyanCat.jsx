@@ -4,7 +4,7 @@ import './NyanCat.scss'
 export default ({stars}) => {
   const starEls = [];
   for (let i = 0; i < stars; i++) {
-    starEls.push(<div className="star" key={i}><span/></div>);
+    starEls.push(<div className="star" key={i}><span></span></div>);
   }
   return (
     <div className="wrapper">

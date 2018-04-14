@@ -48,7 +48,7 @@ export default (req, res) => {
         src
       })
       res.status(200)
-      res.write(header);
+      res.write(header)
       stream
         .pipe(
           through(

@@ -3,19 +3,18 @@
 import fs from 'fs';
 import path from 'path';
 import cheerio from 'cheerio';
-import { Helmet } from 'react-helmet';
 
 // The path is relative from server bundle to client bundle, not the source
 const templatePath = path.join(__dirname, '..', 'client', 'index.html');
 const HTML_TEMPLATE = fs.readFileSync(templatePath).toString();
 
-export default function generateHtml(markup) {
-  // Get the serer-rendering values for the <head />
-  const helmet = Helmet.renderStatic();
-
+function generateData() {
   const $template = cheerio.load(HTML_TEMPLATE);
-  $template('head').append(helmet.title.toString() + helmet.meta.toString() + helmet.link.toString());
-  $template('#app').html(markup);
+  let src = $template("#js-entrypoint").attr('src')
 
-  return $template.html();
+  return {
+    src
+  }
 }
+
+export const pageData = generateData()
